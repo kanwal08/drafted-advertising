@@ -1,0 +1,55 @@
+<div id="kt_table_widget_4_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+  <div class="table-responsive">
+    <table class="table align-middle table-row-dashed fs-6 gy-3 no-footer" id="kt_table_widget_4_table">
+      <!--begin::Table head-->
+      <thead>
+      <!--begin::Table row-->
+      <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 180.1px;">Name</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 102.1px;">Type</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 125.3px;">Impressions</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Clicks</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 133.28px;">CTR</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 102.3px;">Avg CPC</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 91.25px;">Cost</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 91.25px;">Orders</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 91.25px;">Sales</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 25.6667px;">ACo5%</th>
+        <th class="text-end sorting_disabled" rowspan="1" colspan="1" style="width: 25.6667px;">Managed</th>
+      </tr>
+      <!--end::Table row-->
+      </thead>
+      <!--end::Table head-->
+      <!--begin::Table body-->
+      <tbody class="fw-bold text-gray-600">
+      <% @profile_metrics.each_with_index do |metric, indx|  %>
+        <% profile = metric.profile %>
+        <tr class="<%= indx.odd? ? "odd" : "even"  %>">
+          <td class="text-gray-800 text-hover-primary"><%= profile_name(profile) %></td>
+          <td class="text-end"><%= profile&.account&.account_type&.titleize %></td>
+          <td class="text-end"><%= metric.impressions %></td>
+          <td class="text-end"><%= metric.clicks %></td>
+          <td class="text-end"><%= metric.click_through_rate&.round(5) %></td>
+          <td class="text-end"><%= cost_per_click(metric) %></td>
+          <td class="text-end"><%= "$#{metric.cost}" %></td>
+          <td class="text-end"><%= metric.purchases_14d %></td>
+          <td class="text-end"><%= metric.sales_14d %></span></td>
+          <td class="text-end"><%= acost(metric)%></span></td>
+          <td class="text-end">
+            <div class="form-check form-switch form-check-custom form-check-success form-check-solid">
+              <%= form_for(profile) do |f| %>
+                <%= f.check_box :is_actively_managed, class: "form-check-input h-20px w-40px",value:"", id:"kt_flexSwitchCustomDefault_1_1", onchange: "this.form.requestSubmit()" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+      <!--end::Table body-->
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"></div>
+    <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end"></div>
+  </div>
+</div>

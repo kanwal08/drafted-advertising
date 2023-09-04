@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: snapshots
+#
+#  id                   :bigint           not null, primary key
+#  snapshot_type        :string
+#  snapshot_external_id :string
+#  status               :string
+#  profile_id           :bigint
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
+one:
+  snapshot_type: MyString
+  snapshot_external_id: MyString
+  status: MyString
+  location: MyString
+  loaded_in_db: false
+
+two:
+  snapshot_type: MyString
+  snapshot_external_id: MyString
+  status: MyString
+  location: MyString
+  loaded_in_db: false

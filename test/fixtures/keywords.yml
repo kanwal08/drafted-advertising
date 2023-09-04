@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: keywords
+#
+#  id                  :bigint           not null, primary key
+#  last_retrieved_at   :datetime
+#  keyword_text        :string
+#  match_type          :string
+#  keyword_external_id :string
+#  state               :string
+#  bid                 :decimal(, )
+#  ad_group_id         :bigint
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+one:
+  last_retrieved_at: 2023-06-09 04:44:50
+  keyword_text: MyString
+  match_type: MyString
+  state: MyString
+  bid: 9.99
+  ad_group: MyString
+
+two:
+  last_retrieved_at: 2023-06-09 04:44:50
+  keyword_text: MyString
+  match_type: MyString
+  state: MyString
+  bid: 9.99
+  ad_group: MyString

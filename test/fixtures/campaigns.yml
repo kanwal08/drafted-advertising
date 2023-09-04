@@ -1,0 +1,43 @@
+# == Schema Information
+#
+# Table name: campaigns
+#
+#  id                     :bigint           not null, primary key
+#  last_retrieved_at      :datetime
+#  name                   :string
+#  campaign_external_id   :string
+#  campaign_type          :string
+#  targeting_type         :string
+#  premium_bid_adjustment :boolean
+#  daily_budget           :decimal(, )
+#  start_date             :date
+#  state                  :string
+#  bidding_strategy       :string
+#  profile_id             :bigint
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+
+one:
+  last_retrieved_at: 2023-06-08 10:33:04
+  name: MyString
+  campaign_external_id: MyString
+  campaign_type: MyString
+  targeting_type: MyString
+  premium_bid_adjustment: false
+  daily_budget: 9.99
+  start_date: 2023-06-08
+  state: MyString
+  bidding_strategy: MyString
+
+two:
+  last_retrieved_at: 2023-06-08 10:33:04
+  name: MyString
+  campaign_external_id: MyString
+  campaign_type: MyString
+  targeting_type: MyString
+  premium_bid_adjustment: false
+  daily_budget: 9.99
+  start_date: 2023-06-08
+  state: MyString
+  bidding_strategy: MyString

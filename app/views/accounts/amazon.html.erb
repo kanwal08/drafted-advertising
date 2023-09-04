@@ -1,0 +1,72 @@
+<%= render partial: "shared/toolbar", locals: {title: "Amazon Dashboard", breadcrumbs: %w(Accounts Amazon) } %>
+<div class="row gy-5 g-xl-10">
+
+  <div class="col-xl-12 mb-5 mb-xl-12">
+    <div class="card card-flush h-xl-100">
+      <div class="card-header pt-7">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label fw-bold text-gray-800">List of Accounts</span>
+      </h3>
+      <div class="card-toolbar">
+        <%= form_with url: accounts_amazon_path, method: :get, data: { controller: "profile-search-form", profile_search_form_target: "form", turbo_frame: "profile_metrics" }  do |form| %>
+          <div class="d-flex flex-stack flex-wrap gap-4">
+            <div class="d-flex align-items-center fw-bold">
+              <div class="text-gray-400 fs-7 me-2">Type</div>
+                <%= form.select :account_type, account_type_select_options,
+                                {:selected => params[:account_type]},
+                                {class: "select2-form form-select form-select-transparent text-graY-800 fs-base lh-1 fw-bold py-0 ps-3 w-auto",
+                                 "data-control": "select2", "data-hide-search": true,
+                                 "data-dropdown-css-class": "w-150px",
+                                 data: {action: "change->profile-search-form#search"},
+                                }
+                %>
+            </div>
+
+            <div class="d-flex align-items-center fw-bold">
+              <div class="text-gray-400 fs-7 me-2">Status</div>
+              <%= form.select :is_actively_managed, managed_status_select_options,
+                              {:selected => params[:is_actively_managed]},
+                              {class: "select2-form form-select form-select-transparent text-graY-800 fs-base lh-1 fw-bold py-0 ps-3 w-auto",
+                               "data-control": "select2", "data-hide-search": true,
+                               "data-dropdown-css-class": "w-150px",
+                               "data-kt-table-widget-4": "filter_status",
+                               "data-action": "change->profile-search-form#search",
+                              }
+              %>
+            </div>
+
+            <div class="d-flex align-items-center fw-bold">
+              <div class="text-gray-400 fs-7 me-2"><i class="ki-outline ki-calendar-add fs-1"></i></div>
+              <%= form.select :date_range, data_range_select_options,
+                              {:selected => params[:date_range]},
+                              { class: "select2-form form-select form-select-transparent text-graY-800 fs-base lh-1 fw-bold py-0 ps-3 w-auto",
+                               "data-control": "select2", "data-hide-search": true,
+                               "data-dropdown-css-class": "w-150px",
+                               "data-action": "onchange->profile-search-form#search",
+                               }
+              %>
+            </div>
+            <div class="position-relative my-1">
+              <i class="ki-duotone ki-magnifier fs-2 position-absolute top-50 translate-middle-y ms-4">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+              <%= form.text_field :q,
+                                  class: "form-control w-150px fs-7 ps-12",
+                                  placeholder: "Search",
+                                  data: { action: "input->profile-search-form#search" }
+              %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card-body pt-2">
+      <%= turbo_frame_tag "profile_metrics", data: { turbo_action: :advance } do %>
+        <%= render partial: 'profile_metrics' %>
+      <% end %>
+    </div>
+  </div>
+ </div>
+</div>
